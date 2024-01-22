@@ -6,7 +6,7 @@
 /*   By: jkarimov <jkarimov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:05:24 by jkarimov          #+#    #+#             */
-/*   Updated: 2024/01/21 15:06:45 by jkarimov         ###   ########.fr       */
+/*   Updated: 2024/01/22 20:25:30 by jkarimov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 # define GET_NEXT_LINE_H
 
 char	*get_next_line(int fd);
+
 
 #endif
