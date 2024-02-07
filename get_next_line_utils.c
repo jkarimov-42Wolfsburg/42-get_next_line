@@ -6,7 +6,7 @@
 /*   By: jkarimov <jkarimov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 20:30:44 by jkarimov          #+#    #+#             */
-/*   Updated: 2024/01/27 19:37:09 by jkarimov         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:49:45 by jkarimov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,49 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	int		whole_length;
 	char	*s3;
 	int		i;
 	int		j;
 
-	whole_length = ft_strlen(s1) + ft_strlen(s2);
-	s3 = malloc(sizeof(char) * (whole_length + 1));
+	if (!s1)
+	{
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
+	}
+	if (!s1 || !s2)
+		return (NULL);
+	s3 = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
 	if (!s3)
 		return (NULL);
-	i = 0;
+	i = -1;
 	j = 0;
-	while (s1[i] != '\0')
-		s3[j++] = s1[i++];
-	i = 0;
-	while (s2[i] != '\0')
-		s3[j++] = s2[i++];
+	if (s1)
+		while (s1[++i] != '\0')
+			s3[i] = s1[i];
+	while (s2[j] != '\0')
+		s3[i++] = s2[j++];
 	s3[j] = '\0';
+	free (s1);
 	return (s3);
 }
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s && *s != (char)c)
-		s++;
-	if (*s == (char)c || !c)
-		return ((char *)s);
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (0);
+	if (c == '\0')
+		return ((char *)&s[ft_strlen(s)]);
+	while (*s != '\0')
+	{
+		if (*s == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
 	return (NULL);
 }
 

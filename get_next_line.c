@@ -6,16 +6,19 @@
 /*   By: jkarimov <jkarimov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 20:30:41 by jkarimov          #+#    #+#             */
-/*   Updated: 2024/02/05 17:12:34 by jkarimov         ###   ########.fr       */
+/*   Updated: 2024/02/07 18:49:27 by jkarimov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
+#include <fcntl.h>
 
 static char	*ft_read_line(int fd, char *str)
 {
 	char	*buffer;
 	int		re;
+	char	*temp;
 
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
@@ -31,10 +34,10 @@ static char	*ft_read_line(int fd, char *str)
 				free(str);
 			return (NULL);
 		}
-		if (re == 0)
-			*str = 0;
 		buffer[re] = '\0';
-		str = ft_strjoin(str, buffer);
+		temp = ft_strjoin(str, buffer);
+		free(str);
+		str = temp;
 	}
 	free(buffer);
 	return (str);
@@ -66,6 +69,7 @@ char	*ft_return_line(char *str)
 	}
 	s[i] = '\0';
 	return (s);
+	free(s);
 }
 
 char	*ft_new_line(char *str)
@@ -111,3 +115,15 @@ char	*get_next_line(int fd)
 	str = ft_new_line(str);
 	return (line);
 }
+
+// int	main(void)
+// {
+// 	char	*line;
+// 	int		fd;
+
+// 	fd = open("/Users/jkarimov/test/test.txt", O_RDONLY);
+// 	line = get_next_line(fd);
+// 	printf("line: %s", line);
+// 	free (line);
+// 	close(fd);
+// }
