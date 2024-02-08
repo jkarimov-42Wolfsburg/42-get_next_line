@@ -6,7 +6,7 @@
 /*   By: jkarimov <jkarimov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 20:30:44 by jkarimov          #+#    #+#             */
-/*   Updated: 2024/02/07 18:49:45 by jkarimov         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:59:05 by jkarimov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,29 +70,29 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t n)
-{
-	char	*buffer;
-	size_t	i;
-	size_t	s_len;
+// char	*ft_substr(char const *s, unsigned int start, size_t n)
+// {
+// 	char	*buffer;
+// 	size_t	i;
+// 	size_t	s_len;
 
-	s_len = ft_strlen(s);
-	if (s_len < start)
-	{
-		start = 0;
-		n = 0;
-	}
-	if ((s_len - start) < n)
-		n = s_len - start;
-	buffer = (char *)malloc(sizeof(char) * n + 1);
-	if (!buffer)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		buffer[i] = s[start + i];
-		i++;
-	}
-	buffer[i] = '\0';
-	return (buffer);
-}
+// 	s_len = ft_strlen(s);
+// 	if (s_len < start)
+// 	{
+// 		start = 0;
+// 		n = 0;
+// 	}
+// 	if ((s_len - start) < n)
+// 		n = s_len - start;
+// 	buffer = (char *)malloc(sizeof(char) * n + 1);
+// 	if (!buffer)
+// 		return (NULL);
+// 	i = 0;
+// 	while (i < n)
+// 	{
+// 		buffer[i] = s[start + i];
+// 		i++;
+// 	}
+// 	buffer[i] = '\0';
+// 	return (buffer);
+// }
