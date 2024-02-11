@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkarimov <jkarimov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/21 20:30:41 by jkarimov          #+#    #+#             */
-/*   Updated: 2024/02/11 22:51:26 by jkarimov         ###   ########.fr       */
+/*   Created: 2024/02/10 18:10:48 by jkarimov          #+#    #+#             */
+/*   Updated: 2024/02/11 22:32:53 by jkarimov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_read_line(int fd, char *str)
 {
@@ -93,35 +93,17 @@ char	*ft_save_line(char *store)
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*store;
 	int			i;
+	char		*line;
+	static char	*store[257];
 
 	i = 0;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 256)
 		return (0);
-	store = ft_read_line(fd, store);
-	if (!store)
-		return (free (store), NULL);
-	line = ft_line(store, i);
-	store = ft_save_line(store);
+	store[fd] = ft_read_line(fd, store[fd]);
+	if (!store[fd])
+		return (NULL);
+	line = ft_line(store[fd], i);
+	store[fd] = ft_save_line(store[fd]);
 	return (line);
 }
-
-// int	main(void)
-// {
-// 	char	*line;
-// 	int		fd;
-
-// 	fd = open("text.txt", O_RDONLY);
-
-// 	line = get_next_line(fd);
-// 	while (line != NULL)
-// 	{
-// 		line = get_next_line(fd);
-// 		printf("%s\n", line);
-// 		free (line);
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
